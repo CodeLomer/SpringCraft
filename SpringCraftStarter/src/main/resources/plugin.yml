@@ -1,0 +1,3 @@
+name: SpringCraftStarter
+version: '${project.version}'
+main: ru.kiscode.springcraftstarter.SpringCraftStarter
