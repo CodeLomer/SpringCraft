@@ -1,11 +1,12 @@
 package ru.kiscode.springcraftstarter.util;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Documented;
 import java.util.List;
 
 public class ReflectionUtil {
@@ -27,5 +28,26 @@ public class ReflectionUtil {
         return scanResult.getAllClasses().loadClasses();
     }
 
+    public boolean hasAnnotation(@NotNull Class<?> clazz, @NotNull Class<? extends Annotation> annotation) {
+        if (clazz.isAnnotationPresent(annotation)) {
+            return true;
+        }
+
+        for (Annotation a : clazz.getAnnotations()) {
+            if (isValidAnnotation(a)) {
+                if (a.annotationType().isAnnotationPresent(annotation)) {
+                    return true;
+                }
+                if (hasAnnotation(a.annotationType(), annotation)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isValidAnnotation(@NotNull Annotation annotation) {
+        return !annotation.annotationType().isAnnotationPresent(Documented.class);
+    }
 
 }

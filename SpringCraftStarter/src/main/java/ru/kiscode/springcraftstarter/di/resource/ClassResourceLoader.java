@@ -1,15 +1,17 @@
 package ru.kiscode.springcraftstarter.di.resource;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.kiscode.springcraftstarter.util.ReflectionUtil;
 
 import java.util.List;
 import java.util.Objects;
 
 public class ClassResourceLoader implements ResourceLoader<List<Class<?>>>{
-    private @NotNull final String path;
-    private @Nullable final ClassLoader classLoader;
+    private @NotNull
+    final String path;
+    private @Nullable
+    final ClassLoader classLoader;
 
     public ClassResourceLoader(@NotNull String path, @Nullable ClassLoader classLoader){
         this.classLoader = classLoader;

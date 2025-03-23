@@ -1,6 +1,6 @@
 package ru.kiscode.springcraftstarter.di.registry;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import ru.kiscode.springcraftstarter.di.definition.BeanDefinition;
 import ru.kiscode.springcraftstarter.di.exception.NotFindBeanException;
 
