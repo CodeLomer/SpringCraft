@@ -2,15 +2,15 @@ package ru.kiscode.springcraftstarter;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.kiscode.springcraftstarter.di.SpringCraftApplication;
-import ru.kiscode.springcraftstarter.di.registry.BeanRegistry;
+import ru.kiscode.springcraftstarter.di.annotation.ComponentScan;
 
+@ComponentScan()
 public final class SpringCraftStarter extends JavaPlugin {
     private static SpringCraftStarter instance;
-    private BeanRegistry globalRegistry;
     @Override
     public void onEnable() {
         instance = this;
-        SpringCraftApplication.run(this);
+        SpringCraftApplication.run(SpringCraftStarter.class);
     }
 
     @Override
@@ -20,9 +20,5 @@ public final class SpringCraftStarter extends JavaPlugin {
 
     public static SpringCraftStarter getInstance() {
         return instance;
-    }
-
-    public BeanRegistry getGlobalRegistry() {
-        return globalRegistry;
     }
 }

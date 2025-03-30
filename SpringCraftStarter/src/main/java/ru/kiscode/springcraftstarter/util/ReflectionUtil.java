@@ -28,7 +28,7 @@ public class ReflectionUtil {
         return scanResult.getAllClasses().loadClasses();
     }
 
-    public boolean hasAnnotation(@NotNull Class<?> clazz, @NotNull Class<? extends Annotation> annotation) {
+    public static boolean hasAnnotation(@NotNull Class<?> clazz, @NotNull Class<? extends Annotation> annotation) {
         if (clazz.isAnnotationPresent(annotation)) {
             return true;
         }
@@ -46,8 +46,9 @@ public class ReflectionUtil {
         return false;
     }
 
-    private boolean isValidAnnotation(@NotNull Annotation annotation) {
+    private static boolean isValidAnnotation(@NotNull Annotation annotation) {
         return !annotation.annotationType().isAnnotationPresent(Documented.class);
     }
+
 
 }
